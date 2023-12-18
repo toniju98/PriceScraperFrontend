@@ -1,95 +1,143 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import "./styles.css";
+import React, { useState, FormEvent } from "react";
+
+interface Product {
+  title: string;
+  link: string;
+  price: string;
+}
+
+interface ProductListProps {
+  products: Product[];
+  avgPrice: number;
+}
+
+const ProductList: React.FC<ProductListProps> = ({ products, avgPrice }) => {
+  return (
+    <div className="product-list-container">
+      <div className="product-list-heading">
+        <h1 className="product-list-title">Suche: Erfolgreich</h1>
+        <h1 className="product-list-title">Durchschnittspreis: €{avgPrice}</h1>
+      </div>
+      <ul className="product-list">
+        {products.map((product) => (
+          <li key={product.title} className="product-item">
+            <h3 className="product-title">Title: {product.title}</h3>
+            <p className="product-link">
+              {" "}
+              Link:
+              <a href={product.link} target="_blank" rel="noopener noreferrer">
+                {product.link}
+              </a>
+            </p>
+            <p className="product-price">
+              Price: <span className="price">€{product.price}</span>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default function Home() {
+  const [productType, setProductType] = useState("");
+  const [productDepth, setProductDepth] = useState("");
+  const [productWidth, setProductWidth] = useState("");
+  const [responseIsThere, setIfResponse] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const[avgPrice, setAvgPrice] = useState(0.0);
+
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    // Hier können Sie die Formulardaten verarbeiten
+    try {
+      const response = await fetch("http://localhost:5000/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productType,
+          productWidth,
+          productDepth,
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Response from server:", result);
+        setIfResponse(true);
+        setProducts(result || []);
+        const totalPrices = result.reduce(
+          (sum:any, product:any) => sum + product.price,
+          0
+        );
+        const averagePrice = totalPrices / result.length;
+
+        setAvgPrice(averagePrice);
+      } else {
+        console.error("Failed to send data to the server");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    //console.log("Product Size:", productSize);
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
+    <main>
+      <form className="app__form" onSubmit={handleSubmit}>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <label>
+            Produkttyp:
+            <select
+              value={productType}
+              onChange={(e) => setProductType(e.target.value)}
+            >
+              <option value="">Select Type</option>
+              <option value="Waschbecken">Waschbecken</option>
+              <option value="Heizkörper">Heizkörper</option>
+              {/* Add more options as needed */}
+            </select>
+          </label>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div>
+          <label>
+            Breite:
+            <select
+              value={productWidth}
+              onChange={(e) => setProductWidth(e.target.value)}
+            >
+              <option value="">Select Width</option>
+              <option value="50">50 cm</option>
+              <option value="100">100 cm</option>
+              {/* Add more options as needed */}
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            Tiefe:
+            <select
+              value={productDepth}
+              onChange={(e) => setProductDepth(e.target.value)}
+            >
+              <option value="">Select Depth</option>
+              <option value="30">30 cm</option>
+              <option value="60">60 cm</option>
+              {/* Add more options as needed */}
+            </select>
+          </label>
+        </div>
+        <div>
+          <button type="submit">Suchen</button>
+        </div>
+      </form>
+    {responseIsThere && <ProductList products={products} avgPrice={avgPrice} /> }
     </main>
-  )
+  );
 }
