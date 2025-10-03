@@ -1,9 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PriceScraperFrontend
+
+A Next.js frontend application for searching and comparing product prices. This application allows users to search for specific products (like wash basins and radiators) by specifying dimensions and displays the results with average pricing information.
+
+## Features
+
+- Product search by type, width, and depth
+- Real-time price comparison
+- Average price calculation
+- German interface
+- Responsive design
+- Integration with backend API
+
+## Supported Products
+
+- Waschbecken (Wash Basins)
+- Heizkörper (Radiators)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (version 14 or higher)
+- npm, yarn, pnpm, or bun
+- Backend API running on `http://localhost:5000`
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd PriceScraperFrontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Start the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +52,75 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Select a product type (Waschbecken or Heizkörper)
+2. Choose the desired width (50cm or 100cm)
+3. Select the depth (30cm or 60cm)
+4. Click "Suchen" (Search) to find products
+5. View the results with individual prices and average price
 
-## Learn More
+## API Integration
 
-To learn more about Next.js, take a look at the following resources:
+The application communicates with a backend API at `http://localhost:5000/submit` that expects:
+- **Method**: POST
+- **Content-Type**: application/json
+- **Body**: 
+  ```json
+  {
+    "productType": "string",
+    "productWidth": "string", 
+    "productDepth": "string"
+  }
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+PriceScraperFrontend/
+├── app/
+│   ├── globals.css      # Global styles
+│   ├── layout.tsx       # Root layout component
+│   ├── page.tsx         # Main page component
+│   └── styles.css       # Component-specific styles
+├── public/              # Static assets
+├── package.json         # Dependencies and scripts
+├── next.config.js       # Next.js configuration
+└── tsconfig.json        # TypeScript configuration
+```
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js 14.0.4** - React framework
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **CSS** - Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Development
+
+The main application logic is in `app/page.tsx`. The component includes:
+- Form handling for product search
+- API communication with the backend
+- Product list rendering
+- Average price calculation
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is private and not licensed for public use.
