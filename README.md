@@ -1,26 +1,32 @@
-# PriceScraperFrontend
+# 🔍 Preis-Scraper Frontend
 
-A Next.js frontend application for searching and comparing product prices. This application allows users to search for specific products (like wash basins and radiators) by specifying dimensions and displays the results with average pricing information.
+A modern React frontend application for searching and comparing product prices. This application provides an intuitive interface for users to search for specific products by specifying dimensions and displays the results with comprehensive pricing information and modern UI/UX.
 
-## Features
+## ✨ Features
 
-- Product search by type, width, and depth
-- Real-time price comparison
-- Average price calculation
-- German interface
-- Responsive design
-- Integration with backend API
+- **Modern UI/UX** - Clean, responsive design with smooth animations
+- **Product Search** - Search by type, width, and depth with form validation
+- **Real-time Price Comparison** - Live price data from backend API
+- **Average Price Calculation** - Automatic calculation and display of average prices
+- **German Interface** - Fully localized German user interface
+- **Responsive Design** - Optimized for desktop, tablet, and mobile devices
+- **Dark Mode Support** - Automatic dark/light theme based on system preferences
+- **Loading States** - User-friendly loading indicators and error handling
+- **Form Validation** - Client-side validation with clear error messages
+- **Modern Card Layout** - Beautiful product cards with hover effects and call-to-action buttons
 
-## Supported Products
+## 🛍️ Supported Products
 
-- Waschbecken (Wash Basins)
-- Heizkörper (Radiators)
+- **Waschbecken** (Wash Basins)
+- **Heizkörper** (Radiators)  
+- **Spüle** (Sinks)
+- **Badewanne** (Bathtubs)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
+- Node.js (version 16 or higher)
 - npm, yarn, pnpm, or bun
 - Backend API running on `http://localhost:5000`
 
@@ -52,15 +58,22 @@ pnpm dev
 bun dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-## Usage
+## 🚀 Usage
 
-1. Select a product type (Waschbecken or Heizkörper)
-2. Choose the desired width (50cm or 100cm)
-3. Select the depth (30cm or 60cm)
-4. Click "Suchen" (Search) to find products
-5. View the results with individual prices and average price
+1. **Select Product Type** - Choose from Waschbecken, Heizkörper, Spüle, or Badewanne
+2. **Choose Dimensions** - Select width (50cm, 60cm, 80cm, 100cm, 120cm) and depth (30cm, 40cm, 50cm, 60cm)
+3. **Search Products** - Click "🔍 Suchen" to find matching products
+4. **View Results** - Browse through product cards with prices, links, and average pricing
+5. **Access Products** - Click "Produkt ansehen" to visit the product page
+
+### 🎯 Key Features in Action
+- **Form Validation** - All fields must be filled before searching
+- **Loading States** - Visual feedback during API calls
+- **Error Handling** - Clear error messages for failed requests
+- **Responsive Cards** - Product information displayed in modern, interactive cards
+- **Price Comparison** - Easy comparison of prices with highlighted average
 
 ## API Integration
 
@@ -76,51 +89,76 @@ The application communicates with a backend API at `http://localhost:5000/submit
   }
   ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 PriceScraperFrontend/
-├── app/
-│   ├── globals.css      # Global styles
-│   ├── layout.tsx       # Root layout component
-│   ├── page.tsx         # Main page component
-│   └── styles.css       # Component-specific styles
-├── public/              # Static assets
-├── package.json         # Dependencies and scripts
-├── next.config.js       # Next.js configuration
-└── tsconfig.json        # TypeScript configuration
+├── src/
+│   ├── App.tsx         # Main application component with form handling
+│   ├── App.css         # Modern component styles with CSS variables
+│   ├── main.tsx        # Application entry point
+│   └── index.css       # Global styles and design system
+├── public/             # Static assets (minimal, optimized)
+├── index.html          # HTML template with German localization
+├── package.json        # Dependencies and scripts
+├── vite.config.ts      # Vite configuration
+├── tsconfig.json       # TypeScript configuration
+├── tsconfig.node.json  # Node-specific TypeScript config
+└── .eslintrc.cjs       # ESLint configuration
 ```
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-- **Next.js 14.0.4** - React framework
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **CSS** - Styling
+- **Vite 5.0.8** - Fast build tool and dev server
+- **React 18** - Modern UI library with hooks
+- **TypeScript 5.2.2** - Type safety and better development experience
+- **CSS3** - Modern styling with custom properties and responsive design
+- **ESLint** - Code quality and consistency
 
 ## Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run start` - Start production server
+- `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-## Development
+## 💻 Development
 
-The main application logic is in `app/page.tsx`. The component includes:
-- Form handling for product search
-- API communication with the backend
-- Product list rendering
-- Average price calculation
+The main application logic is in `src/App.tsx`. The component includes:
+- **Form Handling** - Product search with validation and error handling
+- **API Communication** - Robust backend integration with loading states
+- **Product Rendering** - Modern card-based product display
+- **Price Calculation** - Automatic average price computation
+- **State Management** - React hooks for form and application state
+- **Error Handling** - User-friendly error messages and validation
 
-## Contributing
+### 🎨 Design System
+- **CSS Custom Properties** - Consistent theming and easy customization
+- **Responsive Grid** - Mobile-first responsive design
+- **Modern Animations** - Smooth transitions and hover effects
+- **Accessibility** - Proper focus states and keyboard navigation
+
+## 🚀 Recent Updates
+
+- ✅ **Modern UI/UX Design** - Complete visual overhaul with modern design principles
+- ✅ **Responsive Layout** - Optimized for all device sizes
+- ✅ **Enhanced Form Validation** - Better user feedback and error handling
+- ✅ **Improved Product Cards** - Modern card design with better information hierarchy
+- ✅ **Dark Mode Support** - Automatic theme switching based on system preferences
+- ✅ **Code Optimization** - Removed unused files and improved project structure
+- ✅ **Better Error Handling** - Clear, actionable error messages
+- ✅ **Loading States** - Visual feedback during API operations
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+4. Test thoroughly on different devices
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
-## License
+## 📄 License
 
 This project is private and not licensed for public use.
