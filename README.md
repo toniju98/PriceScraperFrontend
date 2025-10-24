@@ -17,7 +17,7 @@ A modern React frontend application for searching and comparing product prices. 
 
 ## 📸 Screenshot
 
-![PriceScraper Frontend Application](screenshot.png)
+![PriceScraper Frontend Application](screenshot.PNG)
 *Modern React frontend interface showing product search form and results with responsive design*
 
 ## 🛍️ Supported Products
