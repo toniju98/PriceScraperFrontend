@@ -15,6 +15,11 @@ A modern React frontend application for searching and comparing product prices. 
 - **Form Validation** - Client-side validation with clear error messages
 - **Modern Card Layout** - Beautiful product cards with hover effects and call-to-action buttons
 
+## 📸 Screenshot
+
+![PriceScraper Frontend Application](screenshot.png)
+*Modern React frontend interface showing product search form and results with responsive design*
+
 ## 🛍️ Supported Products
 
 - **Waschbecken** (Wash Basins)
